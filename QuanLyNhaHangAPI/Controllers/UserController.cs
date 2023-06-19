@@ -22,7 +22,7 @@ namespace QuanLyNhaHangAPI.Controllers
 
         [HttpGet]
         [Route("api/User/GetUser")]
-        public IEnumerable<UserModel> GetUser()
+        public async Task<IActionResult> GetUser()
         {
             //var check = Enumerable.Range(1, 5).Select(index => new WeatherForecast
             //{
@@ -39,7 +39,7 @@ namespace QuanLyNhaHangAPI.Controllers
                 password = rs.password,
                 active = rs.active,
             }).ToList();
-            return user;
+            return Ok(user);
         }
     }
 }

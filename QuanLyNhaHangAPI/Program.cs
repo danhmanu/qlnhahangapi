@@ -14,10 +14,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 
 var app = builder.Build();
-app.UseCors(options =>
-     options.WithOrigins("https://localhost:7192")
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+//app.UseCors(options =>
+//     options.WithOrigins("https://localhost:7192")
+//            .AllowAnyHeader()
+//            .AllowAnyMethod());
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin 
+    .AllowCredentials());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
